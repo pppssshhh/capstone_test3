@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exchange Now</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; /* 위쪽 정렬을 위해 flex-start로 변경 */
+      height: 100vh;
+      text-align: center;
+      margin: 0;
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    #title {
+      margin-bottom: 10px;
+    }
+
+    #photo-button {
+      background-color: dimgray;
+      color: white;
+      font-size: 16px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px
+    }
+
+    #image-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    #image-container img {
+      max-width: 100%;
+      height: auto;
+      margin: 10px;
+    }
+
+    #logo-image {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .select-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    select {
+      width: 150px;
+      padding: 10px;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .radio-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .radio-container input[type="radio"] {
+      margin: 5px;
+    }
+
+    .radio-container label {
+    margin-right: 12px; /* 오른쪽 간격을 10px로 설정 */
+    }
+
+  </style>
+</head>
+
+<body>
+  <h1 id="title" style="font-size:50px;">Exchange Now</h1>
+  <h2 style="color: mediumblue" style="font-size:10px;">CWNU Capstone 2023</h2>
+
+  <img
+    src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fd6lsfJ%2Fbtsfg3V9fHF%2Fkk8CaVFkhjkxjcPjIyj5XK%2Fimg.png"
+    width="300" height="300" alt="logo" id="logo-image">
+
+  <div class="select-container">
+    <select>
+      <option value="USD">미국 USD</option>
+      <option value="JPY">일본 JPY</option>
+      <option value="EUR">유로 EUR</option>
+      <option value="AUD">호주 AUD</option>
+      <option value="IDR">인도네시아 IDR</option>
+    </select>
+    
+  <div class="radio-container">
+      <input type="radio" name="type" value="banknote" id="banknote-radio" checked>
+      <label for="banknote-radio">지폐</label>
+      <input type="radio" name="type" value="coin" id="coin-radio">
+      <label for="coin-radio">동전</label>
+    </div>
+  </div>
+</div>
+
+
+  <div id="container">
+    <div id="photo-button-container">
+      <button id="photo-button">Camera</button>
+    </div>
+  </div>
+  <div id="image-container"></div>
+  <script>
+    const photoButton = document.getElementById('photo-button');
+    photoButton.addEventListener('click', () => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const image = document.createElement('img');
+          image.src = event.target.result;
+          const imageContainer = document.getElementById('image-container');
+          imageContainer.appendChild(image);
+        };
+        reader.readAsDataURL(file);
+      };
+      input.click();
+    });
+  </script>
+</body>
+
+</html>
